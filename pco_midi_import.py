@@ -7,8 +7,8 @@ from midiutil import MIDIFile
 # ========== CONFIGURATION ==========
 
 # Personal Access Token (Base64)
-PC_APP_ID     = "YOUR_PLANNING_CENTER_APP_ID"
-PC_SECRET     = "YOUR_PLANNING_CENTER_SECRET"
+PC_APP_ID     = "ef6859b2d409c09b0de1df2788d4551ff10d01ae348e079b207cb58fc96ae984"
+PC_SECRET     = "pco_pat_c99952c219805b5ec88f2c72564e39931a310fcf7620f7f302015b05f35ea77ed2910211"
 PLANNING_HOST = "https://api.planningcenteronline.com/services/v2"
 
 MIDI_OUTPUT   = "weekly_setlist.mid"

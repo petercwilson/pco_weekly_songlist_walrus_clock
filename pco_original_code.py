@@ -10,6 +10,7 @@ from midiutil import MIDIFile
 PC_APP_ID     = "ef6859b2d409c09b0de1df2788d4551ff10d01ae348e079b207cb58fc96ae984"
 PC_SECRET     = "pco_pat_c99952c219805b5ec88f2c72564e39931a310fcf7620f7f302015b05f35ea77ed2910211"
 BASE_URL = "https://api.planningcenteronline.com/services/v2"
+PERSON_ID = "AC63069036#"
 
 MIDI_OUTPUT = "weekly_setlist_with_meta.mid"
 MIDI_CHANNEL = 0
@@ -45,9 +46,10 @@ def fetch_plan_songs_with_meta():
     # for svc in svc_types:  
     #    print(f'ID: {svc["id"]} | Name: {svc["attributes"]["name"]}')
 
-    print("\nAvailable PLan Types:")
-    for plan in plan_id:  
-        print(f'ID: {plan["id"]} | Name: {plan["attributes"]["name"]}')
+    print("\nAvailable Plans:")
+    for p in plans:
+        print(f'ID: {p["id"]} | Date: {p["attributes"]["dates"]} | Title: {p["attributes"]["title"]}')
+
 
     # fetch plans for upcoming Sunday
     params = {"filter[date]": sunday}

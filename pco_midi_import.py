@@ -1,6 +1,6 @@
 import base64
 import requests
-from datetime import datetime, timedelta
+from datetime import datetime, timezone
 from dateutil.relativedelta import relativedelta, SU
 from midiutil import MIDIFile
 
@@ -9,7 +9,7 @@ from midiutil import MIDIFile
 # Personal Access Token (Base64)
 PC_APP_ID     = "ef6859b2d409c09b0de1df2788d4551ff10d01ae348e079b207cb58fc96ae984"
 PC_SECRET     = "pco_pat_c99952c219805b5ec88f2c72564e39931a310fcf7620f7f302015b05f35ea77ed2910211"
-PLANNING_HOST = "https://api.planningcenteronline.com/services/v2"
+BASE_URL = "https://api.planningcenteronline.com/services/v2"
 
 MIDI_OUTPUT = "weekly_setlist_with_meta.mid"
 MIDI_CHANNEL = 0
@@ -25,7 +25,7 @@ def next_sunday(date):
 # ===== FETCH PLAN & METADATA =====
 
 def fetch_plan_songs_with_meta():
-    today = datetime.utcnow().date()
+    today = datetime.now(timezone.utc).date()
     sunday = next_sunday(today).strftime("%Y-%m-%d")
 
     headers = auth_header()
@@ -37,7 +37,17 @@ def fetch_plan_songs_with_meta():
     if not svc_types:
         return []
 
-    svc_id = svc_types[0]["id"]
+# ===== ID FOR CELEBRATION SERVICE =====
+    svc_id = "257965"   
+
+# ===== RETRIEVE SERVICE TYPES ===== 
+    # print("\nAvailable Service Types:")
+    # for svc in svc_types:  
+    #    print(f'ID: {svc["id"]} | Name: {svc["attributes"]["name"]}')
+
+    print("\nAvailable PLan Types:")
+    for plan in plan_id:  
+        print(f'ID: {plan["id"]} | Name: {plan["attributes"]["name"]}')
 
     # fetch plans for upcoming Sunday
     params = {"filter[date]": sunday}
